@@ -1,0 +1,15 @@
+# Production: the site joins the network cloudflared already uses for
+# quant-modeling, and the tunnel routes tramonihadrien.com to portfolio:8080.
+# Nothing is published on the host. See DEPLOY.md.
+services:
+  portfolio:
+    build: .
+    image: portfolio:latest
+    container_name: portfolio
+    restart: unless-stopped
+    networks: [tunnel]
+
+networks:
+  tunnel:
+    external: true
+    name: ${TUNNEL_NETWORK:-quant-modeling-prod_default}

@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* Dark mode follows the `dark` class on <html>, set before first paint by the
+   inline script in index.html (system preference unless the visitor chose). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+	--color-canvas: #f7f7f5;
+	--color-surface: #ffffff;
+	--color-line: #e4e4e0;
+	--color-ink: #16171a;
+	--color-ink-secondary: #4a4d55;
+	--color-ink-muted: #7c808a;
+	--color-accent: #2f5bea;
+	--color-accent-soft: #e6ecfd;
+	--color-warn: #b45309;
+	--color-warn-soft: #fef3c7;
+}
+
+@layer base {
+	.dark {
+		--color-canvas: #0d0e11;
+		--color-surface: #15171c;
+		--color-line: #262932;
+		--color-ink: #ececee;
+		--color-ink-secondary: #b3b6be;
+		--color-ink-muted: #7d818c;
+		--color-accent: #7b9bff;
+		--color-accent-soft: #1a2240;
+		--color-warn: #fbbf24;
+		--color-warn-soft: #3a2a08;
+	}
+
+	html {
+		background: var(--color-canvas);
+		color: var(--color-ink);
+		scroll-behavior: smooth;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		background: var(--color-canvas);
+		font-family: var(--font-sans);
+	}
+
+	::selection {
+		background: var(--color-accent);
+		color: var(--color-canvas);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+}
