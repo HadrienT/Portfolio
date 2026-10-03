@@ -1,7 +1,7 @@
 import { ArrowRight, Download, Github } from "lucide-react";
 import { profile } from "@/content/profile";
 import { Container } from "@/components/Container";
-import { PathsCanvas } from "@/components/PathsCanvas";
+import { HERO_MODEL, PathsCanvas } from "@/components/PathsCanvas";
 import { SmartLink } from "@/components/SmartLink";
 import { Text } from "@/components/Text";
 
@@ -9,8 +9,22 @@ export function Hero() {
 	const github = profile.links.find((l) => l.label === "GitHub");
 	return (
 		<section className="relative overflow-hidden border-b border-line">
-			<PathsCanvas className="pointer-events-none absolute inset-0 h-full w-full [mask-image:linear-gradient(to_right,transparent,black_45%)] opacity-25 sm:opacity-70 sm:dark:opacity-80" />
-			<Container className="relative py-24 sm:py-32">
+			{/* The paths fill the top band; the text sits below it, clear of them. */}
+			<PathsCanvas className="pointer-events-none absolute inset-x-0 top-0 h-64 w-full [mask-image:linear-gradient(to_right,transparent,black_20%),linear-gradient(to_bottom,black_75%,transparent)] [mask-composite:intersect] sm:h-80" />
+			<Container className="relative pt-60 pb-20 sm:pt-80 sm:pb-24">
+				<p
+					aria-hidden="true"
+					className="absolute top-5 right-4 hidden items-center gap-4 rounded-md bg-canvas/85 px-2.5 py-1.5 font-mono text-[11px] text-ink-secondary backdrop-blur-sm sm:right-6 sm:flex"
+				>
+					<span className="flex items-center gap-1.5">
+						<span className="h-0.5 w-5 rounded bg-accent" />
+						mean of {HERO_MODEL.count} paths
+					</span>
+					<span className="flex items-center gap-1.5">
+						<span className="w-5 border-t-[1.5px] border-dashed border-ink" />
+						E[Sₜ] = S₀e<sup className="text-[9px] leading-none">μt</sup>
+					</span>
+				</p>
 				<p className="font-mono text-xs tracking-wider text-accent uppercase">
 					{profile.headline}
 				</p>
