@@ -1,16 +1,18 @@
 import { useEffect, useRef } from "react";
-import { gbmPaths } from "@/lib/random";
+import { gbmPaths, meanPath } from "@/lib/random";
 
-const COUNT = 64;
+/** The simulated model, shown in the hero's legend. */
+export const HERO_MODEL = { count: 64, mu: 0.1, sigma: 0.35 } as const;
+
 const STEPS = 160;
-const SIGMA = 0.35;
 const SEED = 20260;
 const DRAW_MS = 2600;
 
 /**
- * Monte-Carlo paths of a geometric Brownian motion drawn left to right — the
- * hero's backdrop. Deterministic (seeded), redrawn on resize and theme change,
- * static under `prefers-reduced-motion`.
+ * Monte-Carlo paths of a geometric Brownian motion drawn left to right, with
+ * their sample mean and the exact expectation E[S_t] = e^{mu t} — the hero's
+ * backdrop. Deterministic (seeded), redrawn on resize and theme change, static
+ * under `prefers-reduced-motion`.
  */
 export function PathsCanvas({ className }: { className?: string }) {
 	const ref = useRef<HTMLCanvasElement>(null);
@@ -20,10 +22,13 @@ export function PathsCanvas({ className }: { className?: string }) {
 		const ctx = canvas?.getContext("2d");
 		if (!canvas || !ctx) return;
 
-		const paths = gbmPaths(COUNT, STEPS, SIGMA, SEED);
+		const { count, mu, sigma } = HERO_MODEL;
+		const paths = gbmPaths(count, STEPS, sigma, SEED, mu);
+		const mean = meanPath(paths);
+		const expectation = mean.map((_, i) => Math.exp((mu * i) / STEPS));
 		const terminal = paths.map((p) => p[STEPS]!).sort((a, b) => a - b);
-		const lo = Math.log(terminal[Math.floor(COUNT * 0.02)]!) * 1.15;
-		const hi = Math.log(terminal[Math.ceil(COUNT * 0.98) - 1]!) * 1.15;
+		const lo = Math.log(terminal[Math.floor(count * 0.02)]!) * 1.15;
+		const hi = Math.log(terminal[Math.ceil(count * 0.98) - 1]!) * 1.15;
 		const reduced = window.matchMedia(
 			"(prefers-reduced-motion: reduce)",
 		).matches;
@@ -38,24 +43,39 @@ export function PathsCanvas({ className }: { className?: string }) {
 			const style = getComputedStyle(canvas);
 			const accent = style.getPropertyValue("--color-accent").trim();
 			const muted = style.getPropertyValue("--color-ink-muted").trim();
+			const ink = style.getPropertyValue("--color-ink").trim();
 
 			ctx.clearRect(0, 0, width, height);
 			const x = (i: number) => (i / STEPS) * width;
 			const y = (s: number) =>
-				height * (0.92 - (0.84 * (Math.log(s) - lo)) / (hi - lo));
+				height * (0.94 - (0.88 * (Math.log(s) - lo)) / (hi - lo));
 			const last = Math.max(1, Math.floor(progress * STEPS));
 			const dpr = window.devicePixelRatio || 1;
 
-			paths.forEach((path, k) => {
-				const highlight = k % 16 === 0;
+			const line = (
+				path: number[],
+				color: string,
+				alpha: number,
+				width: number,
+				dash: number[] = [],
+			) => {
 				ctx.beginPath();
 				ctx.moveTo(x(0), y(path[0]!));
 				for (let i = 1; i <= last; i++) ctx.lineTo(x(i), y(path[i]!));
-				ctx.strokeStyle = highlight ? accent : muted;
-				ctx.globalAlpha = highlight ? 0.9 : 0.22;
-				ctx.lineWidth = (highlight ? 1.6 : 1) * dpr;
+				ctx.strokeStyle = color;
+				ctx.globalAlpha = alpha;
+				ctx.lineWidth = width * dpr;
+				ctx.setLineDash(dash.map((d) => d * dpr));
 				ctx.stroke();
+			};
+
+			paths.forEach((path, k) => {
+				if (k % 16 === 0) line(path, accent, 0.55, 1.2);
+				else line(path, muted, 0.2, 1);
 			});
+			line(expectation, ink, 0.75, 1.5, [5, 5]);
+			line(mean, accent, 1, 2.6);
+			ctx.setLineDash([]);
 			ctx.globalAlpha = 1;
 		};
 

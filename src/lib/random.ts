@@ -44,3 +44,9 @@ export function gbmPaths(
 		return path;
 	});
 }
+
+/** Pointwise average of equal-length paths (the Monte-Carlo estimate of E[S_t]). */
+export function meanPath(paths: number[][]): number[] {
+	const n = paths.length;
+	return paths[0]!.map((_, i) => paths.reduce((acc, p) => acc + p[i]!, 0) / n);
+}

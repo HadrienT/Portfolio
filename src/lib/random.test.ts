@@ -1,4 +1,4 @@
-import { gbmPaths, mulberry32, normalSource } from "./random";
+import { gbmPaths, meanPath, mulberry32, normalSource } from "./random";
 
 describe("random", () => {
 	it("is deterministic for a given seed", () => {
@@ -20,5 +20,14 @@ describe("random", () => {
 		const mean = paths.reduce((a, p) => a + p[4]!, 0) / paths.length;
 		// standard error of the terminal mean ~ sqrt(e^{0.09} - 1) / sqrt(n) ≈ 0.002
 		expect(Math.abs(mean - 1)).toBeLessThan(0.01);
+	});
+
+	it("averages paths into an estimate of E[S_t] = e^{mu t}", () => {
+		const mu = 0.1;
+		const mean = meanPath(gbmPaths(20_000, 4, 0.3, 5, mu));
+		expect(mean[0]).toBe(1);
+		mean.forEach((m, i) => {
+			expect(Math.abs(m - Math.exp((mu * i) / 4))).toBeLessThan(0.01);
+		});
 	});
 });
