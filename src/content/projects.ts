@@ -25,7 +25,7 @@ export const projects: Project[] = [
 	{
 		slug: "quant-modeling",
 		name: "quant-modeling",
-		tagline: "A desk-grade derivatives pricing library, end to end.",
+		tagline: "A derivatives pricing library, from the C++ core to a web app.",
 		description:
 			"C++20 core split into instruments, models, engines and pricers; " +
 			"adjoint Greeks; Monte Carlo on two V100s, bit-identical across GPU " +

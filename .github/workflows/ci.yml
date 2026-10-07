@@ -33,3 +33,4 @@ jobs:
           curl -sf http://localhost:8080/ | grep -q '<div id="root">'
           curl -sf http://localhost:8080/projects/quant-modeling | grep -q '<div id="root">'
           test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/price)" = 301
+          curl -sfI http://localhost:8080/cv.pdf | grep -qi '^content-type: application/pdf'

@@ -22,8 +22,10 @@ export function QuantModelingPage() {
 						quant-modeling
 					</h1>
 					<p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-secondary">
-						A derivatives-pricing library written the way a desk would build
-						one, and carried all the way to a product — built solo, end to end.
+						A derivatives pricing library that keeps instruments, models and
+						engines apart, carried through to a web app. A personal project,
+						built with an AI coding assistant to put my self-study into
+						practice.
 					</p>
 					<div className="mt-6 flex flex-wrap gap-1.5">
 						{project.tags.map((t) => (

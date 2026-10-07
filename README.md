@@ -31,8 +31,15 @@ Everything personal is in `src/content/`:
 
 A string starting with `TODO:` is a placeholder: the page shows it
 highlighted in amber, a `TODO:` link renders as plain text, and `npm test`
-prints the list of those left. The résumé goes in `public/cv.pdf`, then set
-`cv: "/cv.pdf"`.
+prints the list of those left.
+
+## Résumé
+
+The site serves `public/cv.pdf`, the résumé **without the phone number**. Its
+LaTeX source lives in `CV/`, which git ignores: `CV/build.sh` compiles the
+version with the phone (kept there, to send with an application) and the
+public one, and copies the latter to `public/cv.pdf`. It needs `tectonic`,
+`latexmk` or `pdflatex`.
 
 ## Deploy
 

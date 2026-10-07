@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Download, Mail } from "lucide-react";
 import { isPlaceholder, profile } from "@/content/profile";
 import { Section } from "@/components/Section";
 import { SmartLink } from "@/components/SmartLink";
@@ -11,8 +11,8 @@ export function Contact() {
 	return (
 		<Section id="contact" eyebrow="Contact" title="Let's talk">
 			<p className="max-w-xl text-base leading-relaxed text-ink-secondary">
-				I am looking for quant developer and ML engineering roles. The fastest
-				way to reach me is by email.
+				I am looking for a first quantitative developer role. The fastest way to
+				reach me is by email.
 			</p>
 			<div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
 				<SmartLink
@@ -21,6 +21,14 @@ export function Contact() {
 				>
 					<Mail className="size-4" />
 					<Text>{profile.email}</Text>
+				</SmartLink>
+				<SmartLink
+					href={profile.cv}
+					download={profile.cvFilename}
+					className="inline-flex items-center gap-1 text-sm text-ink-secondary hover:text-ink"
+				>
+					Résumé (PDF)
+					<Download className="size-3.5" />
 				</SmartLink>
 				{profile.links.map((l) => (
 					<SmartLink

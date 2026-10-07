@@ -5,7 +5,7 @@ import { Text } from "@/components/Text";
 
 export function Experience() {
 	return (
-		<Section id="experience" eyebrow="Experience" title="Where I have worked">
+		<Section id="experience" eyebrow="Experience" title="Background">
 			<ol className="relative space-y-10 border-l border-line pl-6 sm:pl-8">
 				{experience.map((job, i) => (
 					<li key={i} className="relative">

@@ -1,0 +1,40 @@
+# Brings the portfolio container up on boot. The container carries
+# `restart: unless-stopped`, so dockerd restarts it on its own at boot; this
+# unit is belt-and-braces (and brings it back after a manual
+# `docker compose down`).
+#
+# A systemd **user** unit: no sudo needed, and lingering
+# (`loginctl enable-linger`) starts it at boot without a login.
+#
+# Install:
+#   cp deploy/portfolio.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now portfolio.service
+#
+# The path below is the production worktree (DEPLOY.md, section 1).
+
+[Unit]
+Description=portfolio site (docker compose)
+# A user unit cannot be ordered after the system's docker.service, and the
+# container joins the network of the quant-modeling stack, which may not exist
+# yet. So no ordering: `up` fails while docker or that network is missing, and
+# `Restart=on-failure` tries again every 30 s, at most 20 times in 15 minutes.
+StartLimitIntervalSec=15min
+StartLimitBurst=20
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=%h/Portfolio-prod
+# No `--build` and no `git pull`: a boot restarts the version that was
+# deployed, it does not ship a new one. `--wait` fails the unit (and so
+# retries) unless the container ends up healthy.
+ExecStart=/usr/bin/docker compose up -d --wait
+Restart=on-failure
+RestartSec=30s
+TimeoutStartSec=0
+# No ExecStop: `docker compose down` would delete the container at every
+# shutdown, leaving dockerd nothing to restart at boot.
+
+[Install]
+WantedBy=default.target
