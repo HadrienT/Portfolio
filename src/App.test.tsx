@@ -32,12 +32,18 @@ describe("App", () => {
 		expect(
 			screen.getByRole("heading", { level: 1, name: "Hadrien Tramoni" }),
 		).toBeInTheDocument();
-		for (const title of [
-			"Things I have built",
-			"Where I have worked",
-			"Let's talk",
-		]) {
+		for (const title of ["Things I have built", "Background", "Let's talk"]) {
 			expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
+		}
+	});
+
+	it("offers the résumé as a file download, not a route", () => {
+		renderAt("/");
+		const links = screen.getAllByRole("link", { name: /Résumé/ });
+		expect(links.length).toBeGreaterThan(0);
+		for (const link of links) {
+			expect(link).toHaveAttribute("href", "/cv.pdf");
+			expect(link).toHaveAttribute("download", "Hadrien_Tramoni_CV.pdf");
 		}
 	});
 

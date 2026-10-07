@@ -40,55 +40,91 @@ export interface SkillGroup {
 
 export const profile = {
 	name: "Hadrien Tramoni",
-	headline: "Quant developer · C++ / GPU · ML systems",
-	location: "TODO: City, Country",
-	availability: "TODO: Open to quant developer and ML engineering roles",
+	headline: "C++ / Python · quantitative finance · ML engineering",
+	location: "France",
+	availability: "Looking for a first quantitative developer role",
 	pitch:
-		"I build pricing libraries the way a desk would — a C++20 core with " +
-		"adjoint Greeks and GPU Monte Carlo — and carry them all the way to a " +
-		"product people can use.",
+		"Software engineer with a machine-learning background, moving into " +
+		"quantitative development. I have spent the past two years studying " +
+		"derivatives pricing and building a C++20 pricing library to put it " +
+		"into practice.",
 	about: [
-		"TODO: Two or three sentences on who you are and what you are looking for.",
-		"TODO: One sentence on what you like to work on (performance, numerics, systems).",
+		"I trained as a computer-science engineer at ENSSAT, then worked for a " +
+			"year as a machine learning engineer at Richemont, taking computer " +
+			"vision and LLM prototypes to production.",
+		"Since late 2024 I have been studying quantitative finance on my own, " +
+			"from Hull and Shreve to Gatheral, Bergomi, Glasserman and Savine. " +
+			"quant-modeling is where I implement what I read: I learn a method " +
+			"by coding it and testing it against a closed form or a published " +
+			"result. I built it with an AI coding assistant.",
+		"I have not worked on a trading floor yet. I am looking for a first " +
+			"quantitative developer role where I can learn from people who have, " +
+			"and I enjoy numerical code, performance and careful testing.",
 	],
-	email: "TODO: contact email",
-	cv: "TODO: /cv.pdf",
+	email: "tramonihadrien@gmail.com",
+	/** Built from `CV/cv-public.tex` (no phone number) by `CV/build.sh`. */
+	cv: "/cv.pdf",
+	cvFilename: "Hadrien_Tramoni_CV.pdf",
 	links: [
 		{ label: "GitHub", href: "https://github.com/HadrienT" },
-		{ label: "LinkedIn", href: "TODO: https://www.linkedin.com/in/..." },
+		{
+			label: "LinkedIn",
+			href: "https://www.linkedin.com/in/hadrien-tramoni/",
+		},
 	] satisfies Link[],
 };
 
 export const experience: Experience[] = [
 	{
-		role: "TODO: Job title",
-		company: "TODO: Company",
-		location: "TODO: City",
-		period: "TODO: 2024 — now",
-		summary: "TODO: One line on the team and what it does.",
+		role: "Independent study, quantitative finance",
+		company: "Self-directed",
+		location: "France",
+		period: "Nov 2024 — now",
+		summary:
+			"Full-time study of derivatives pricing and numerical methods, " +
+			"applied in the quant-modeling project.",
 		highlights: [
-			"TODO: An achievement with a number (latency, P&L, coverage, users).",
-			"TODO: A second achievement.",
+			"Worked through Hull, Shreve, Gatheral, Bergomi, Glasserman and Savine.",
+			"Implemented the methods in a C++20 pricing library: trees, PDE, Monte Carlo, calibration, adjoint Greeks, CUDA.",
 		],
-		stack: ["C++", "Python"],
+		stack: ["C++20", "CUDA", "Python"],
 	},
 	{
-		role: "TODO: Previous job title",
-		company: "TODO: Company",
-		location: "TODO: City",
-		period: "TODO: 2022 — 2024",
-		summary: "TODO: One line on the team and what it does.",
-		highlights: ["TODO: An achievement with a number."],
-		stack: ["TODO: Stack"],
+		role: "Machine Learning Engineer",
+		company: "Richemont International SA",
+		location: "Geneva",
+		period: "Nov 2023 — Nov 2024",
+		summary:
+			"Computer vision and LLM document extraction, from research " +
+			"prototype to production API.",
+		highlights: [
+			"Built a computer vision system that reads serial numbers from product images, reaching over 90% accuracy on in-group items.",
+			"Applied LLMs (PaLM, Gemini) to extract structured data from unstructured documents; fine-tuned and evaluated the models on Vertex AI.",
+			"Took the prototypes to production as an API on GCP Cloud Run, with the infrastructure managed in Terraform.",
+			"Presented the results at Watches and Wonders 2024; managed a small team across several workstreams.",
+		],
+		stack: ["Python", "Vertex AI", "GCP Cloud Run", "Terraform"],
 	},
 ];
 
 export const education: Education[] = [
 	{
-		degree: "TODO: Degree, major",
-		school: "TODO: School",
-		period: "TODO: 2019 — 2022",
-		detail: "TODO: Relevant courses, ranking or thesis.",
+		degree: "Engineering Degree in Computer Science",
+		school: "ENSSAT, Lannion",
+		period: "2020 — 2024",
+		detail: "French Diplôme d'Ingénieur.",
+	},
+	{
+		degree: "Exchange semester, Machine Learning and Computer Science",
+		school: "IT University of Copenhagen",
+		period: "Aug 2022 — Jan 2023",
+		detail: "Semester abroad during the engineering degree.",
+	},
+	{
+		degree: "Classes Préparatoires (CPGE), Mathematics and Physics",
+		school: "Lycée Jean Dautet, La Rochelle",
+		period: "2016 — 2020",
+		detail: "Intensive undergraduate programme.",
 	},
 ];
 

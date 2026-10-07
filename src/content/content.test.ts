@@ -36,6 +36,11 @@ describe("content", () => {
 		expect(hidden).toEqual([]);
 	});
 
+	it("never publishes a phone number", () => {
+		const phones = all.filter(([, s]) => /\+?\d[\d .-]{8,}\d/.test(s));
+		expect(phones).toEqual([]);
+	});
+
 	it("uses absolute https URLs for external links", () => {
 		const hrefs = all
 			.filter(([p]) => p.endsWith(".href"))
