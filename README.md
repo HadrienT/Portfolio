@@ -44,3 +44,7 @@ public one, and copies the latter to `public/cv.pdf`. It needs `tectonic`,
 ## Deploy
 
 See [DEPLOY.md](DEPLOY.md).
+
+## License
+
+[MIT](LICENSE)
