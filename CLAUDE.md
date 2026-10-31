@@ -7,16 +7,16 @@ quant-modeling Cloudflare tunnel. The pricing app lives on `quant.tramonihadrien
 
 ## Where things are
 
-|                   |                                                                                                                                                        |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `src/content/`    | **All the site's text** (profile, projects, case study). A text starting with `TODO:` is a placeholder, highlighted on screen and listed by `npm test` |
-| `src/sections/`   | Home page sections                                                                                                                                     |
-| `src/pages/`      | Routed pages (`/`, `/projects/quant-modeling`, 404)                                                                                                    |
-| `src/components/` | Shared blocks (`Text` handles placeholders, `SmartLink` internal / external / `TODO:` links)                                                           |
-| `deploy/`         | nginx (including the 301s from the app's old routes to the subdomain) and security headers                                                             |
+|                   |                                                                                                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/content/`    | **All the site's text** (profile, projects, case study). A text starting with `TODO:` is a placeholder, highlighted on screen and listed by `npm test`             |
+| `src/sections/`   | Home page sections                                                                                                                                                 |
+| `src/pages/`      | Routed pages (`/`, `/projects/quant-modeling`, 404)                                                                                                                |
+| `src/components/` | Shared blocks (`Text` handles placeholders, `SmartLink` internal / external / `TODO:` links)                                                                       |
+| `deploy/`         | nginx (including the 301s from the app's old routes to the subdomain) and security headers                                                                         |
 | `CV/`             | LaTeX source of the résumé, **ignored by git**. `CV/build.sh` produces the version with phone (stays there) and `public/cv.pdf`, without phone, served by the site |
-| `scripts/`        | `deploy.sh` (build, restart, health check) and `auto-deploy.sh` (continuous deployment with rollback)                                                  |
-| `DEPLOY.md`       | Going live and DNS switch                                                                                                                              |
+| `scripts/`        | `deploy.sh` (build, restart, health check) and `auto-deploy.sh` (continuous deployment with rollback)                                                              |
+| `DEPLOY.md`       | Going live and DNS switch                                                                                                                                          |
 
 ## Commands
 
