@@ -5,6 +5,8 @@ for recruiters, with a case study of
 [quant-modeling](https://github.com/HadrienT/quant-modeling), whose app moves
 to [quant.tramonihadrien.com](https://quant.tramonihadrien.com).
 
+**[How it works: interactive map](https://hadrient.github.io/atlas-pages/Portfolio/)**
+
 React 19 + Vite + TypeScript + Tailwind 4, served by nginx, self-hosted behind
 a Cloudflare tunnel. No third-party request: fonts are bundled, no analytics.
 
