@@ -47,6 +47,34 @@ export const projects: Project[] = [
 		featured: true,
 	},
 	{
+		name: "text-signals",
+		tagline:
+			"A small research study: does an LLM reading of Fed statements explain bond moves?",
+		description:
+			"A local 14B model (Phi-4) reads 250 FOMC statements (1994–2026) into " +
+			"structured extractions with verbatim evidence. Its tone score is " +
+			"tested against the 2-year yield's move in the 30 minutes around each " +
+			"release, with the test fixed before any score met market data. The " +
+			"effect is small but robust; its limits are reported, along with " +
+			"look-ahead bias tests on anonymised and rewritten statements.",
+		tags: ["Python", "Local LLMs", "Event study", "Look-ahead bias"],
+		metrics: [
+			{ value: "250", label: "FOMC statements read" },
+			{ value: "+1.03", label: "bp on the 2-year yield per SD of tone" },
+			{ value: "1", label: "primary test, fixed in advance" },
+		],
+		links: [
+			{
+				label: "White paper (PDF)",
+				href: "https://github.com/HadrienT/text-signals/blob/main/reports/fomc_whitepaper.pdf",
+			},
+			{
+				label: "Source",
+				href: "https://github.com/HadrienT/text-signals",
+			},
+		],
+	},
+	{
 		name: "quant-platform",
 		tagline: "Observability and audit for the pricing service.",
 		description:
