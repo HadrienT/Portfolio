@@ -56,7 +56,9 @@ export const profile = {
 			"from Hull and Shreve to Gatheral, Bergomi, Glasserman and Savine. " +
 			"quant-modeling is where I implement what I read: I learn a method " +
 			"by coding it and testing it against a closed form or a published " +
-			"result. I built it with an AI coding assistant.",
+			"result. I built it with an AI coding assistant. text-signals is a " +
+			"smaller research project, where I test whether an LLM reading of " +
+			"Fed statements explains bond moves, and report where it does not.",
 		"I have not worked on a trading floor yet. I am looking for a first " +
 			"quantitative developer role where I can learn from people who have, " +
 			"and I enjoy numerical code, performance and careful testing.",
@@ -98,10 +100,10 @@ export const experience: Experience[] = [
 			"Computer vision and LLM document extraction, from research " +
 			"prototype to production API.",
 		highlights: [
-			"Built a computer vision system that reads serial numbers from product images, reaching over 90% accuracy on in-group items.",
+			"Built a computer vision system that reads serial numbers from product images, reaching over 90% accuracy on the group's own products.",
 			"Applied LLMs (PaLM, Gemini) to extract structured data from unstructured documents; fine-tuned and evaluated the models on Vertex AI.",
 			"Took the prototypes to production as an API on GCP Cloud Run, with the infrastructure managed in Terraform.",
-			"Presented the results at Watches and Wonders 2024; managed a small team across several workstreams.",
+			"Acted as the link between two teams, supervised an intern and delegated work to a research assistant from the Swiss Data Science Center; presented the results at Watches and Wonders 2024.",
 		],
 		stack: ["Python", "Vertex AI", "GCP Cloud Run", "Terraform"],
 	},
